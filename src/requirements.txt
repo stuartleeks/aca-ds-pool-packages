@@ -1,0 +1,5 @@
+aiohttp==3.11.13
+anyio==4.8.0
+autogen-ext==0.4.9
+azure.identity==1.20.0
+python_dotenv==1.0.1
