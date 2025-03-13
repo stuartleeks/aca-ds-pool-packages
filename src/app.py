@@ -25,7 +25,7 @@ async def main():
             work_dir=temp_dir
         )
         cancellation_token = CancellationToken()
-        
+
         code_blocks = [
             CodeBlock(code="""
 import pkg_resources
@@ -44,17 +44,17 @@ with open("packages.txt", "w") as f:
 
         files = await executor.get_file_list(cancellation_token)
         if "packages.txt" not in files:
-            raise ValueError("File packages.txt not found in the executor's file list.")
+            raise ValueError(
+                "File packages.txt not found in the executor's file list.")
         file_result = await executor.download_files(["packages.txt"], cancellation_token)
-        
+
         print(f"Downloaded: {file_result}")
         async with await open_file(os.path.join(temp_dir, "packages.txt"), "r") as f:
             content = await f.read()
-            print(f"======================= packages =======================\n{content}")
+            print(
+                f"======================= packages =======================\n{content}")
         async with await open_file(os.path.join(os.getcwd(), "packages.txt"), "w") as f:
             await f.write(content)
-        input("Press Enter to continue...")
-
 
 
 asyncio.run(main())
